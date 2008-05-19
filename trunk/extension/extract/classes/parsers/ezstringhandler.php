@@ -1,13 +1,11 @@
 <?
 
-
-class eZStringHandler extends BaseHandler {
-
-	function exportAttribute( &$attribute )
+class eZStringHandler extends BaseHandler
+{
+	public function exportAttribute( &$attribute )
 	{
 		return $this->escape( $attribute->content() );
 	}
-
 }
 
 ?>

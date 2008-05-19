@@ -1,5 +1,6 @@
 [ExportSettings]
-#If ExportClasses is not set or empty the system will make all classes avialable.
+#If ExportClasses is not set or empty the system will make all classes available.
+ExportClasses[]
 #ExportClasses[]=user
 
 # When unset it will take User placement/User ClassID

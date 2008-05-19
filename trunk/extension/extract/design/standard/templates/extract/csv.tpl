@@ -1,3 +1,4 @@
+{def $types = array()}
 <div class="context-block">
 
 	{* DESIGN: Header START *}<div class="box-header"><div class="box-tc"><div class="box-ml"><div class="box-mr"><div class="box-tl"><div class="box-tr">
@@ -14,7 +15,7 @@
 
 	{let subtree_node=fetch(content,node,hash(node_id,$Subtree))}
 	<form name="eZExtract" method="post" action={'extract/csv'|ezurl}>
-	
+
 		<fieldset>
 			<legend>{'Data selection'|i18n('design/standard/extract')}</legend>
 			{if $has_prefilledata|not}
@@ -26,7 +27,7 @@
 					<input name="Subtree" type="hidden" id="Subtree" value="{$Subtree}">
 				</div>
 				<div class="element">
-					{def $types=array( hash( 'id', 'tree', 'name', ' Tree ( full subtree )'), hash( 'id', 'list', 'name', 'List (only children)' ) )}
+					{set $types=array( hash( 'id', 'tree', 'name', ' Tree ( full subtree )'), hash( 'id', 'list', 'name', 'List (only children)' ) )}
 				<label>{'Depth'|i18n('design/standard/extract')}</label>
 					<select name="type">
 
@@ -36,7 +37,7 @@
 					</select>
 				</div>
 				<div class="element">
-				{def $types=array( hash( 'id', '0', 'name', 'No'), hash( 'id', '1', 'name', 'Yes' ) )}
+				{set $types=array( hash( 'id', '0', 'name', 'No'), hash( 'id', '1', 'name', 'Yes' ) )}
 				<label>{'Mainnode only'|i18n('design/standard/extract')}</label>
 					<select name="mainnodeonly">
 					{section loop=$types}
@@ -77,11 +78,11 @@
 					</select>
 				</div>
 				<div class="element">
-				{def $types=array( hash( 'id', '1', 'name', 'Yes'), hash( 'id', '0', 'name', 'No' ) )}
+				{set $types=array( hash( 'id', '1', 'name', 'Yes'), hash( 'id', '0', 'name', 'No' ) )}
 				<label>{'Escape'|i18n('design/standard/extract')}</label>
 					<select name="Escape">
 					{section loop=$types}
-						<option value="{$:item.id}" {section show=$:item.id|eq($Escape)} selected{/section}>{$:item.name}</option>
+						<option value="{$:item.id}" {section show=$:item.id|eq( $Escape )} selected{/section}>{$:item.name}</option>
 						{/section}
 					</select>
 					<p>"No" is not <a href="http://tools.ietf.org/html/rfc4180">RFC</a> conform, <br /> removal of CR and LF from field value</p>
@@ -101,11 +102,11 @@
 					{/if}
 						{foreach $classes as $class }
 						<option value="{$class.id}" {if $class.id|eq($Class_id)} selected{/if}>{$class.name|wash}</option>
-						{/section}
+						{/foreach}
 					</select>
 				</div>
 				<div class="element">
-					<input class="button" name="Update" type="submit" value="{'Update'|i18n('design/standard/extract')}"> 
+					<input class="button" name="Update" type="submit" value="{'Update'|i18n('design/standard/extract')}">
 				</div>
 				<div class="element">
 					<select name="AddAttributeID">
@@ -131,7 +132,7 @@
 				<table class="list" cellspacing="0">
 					<tr>
 						<th class="tight">{'Position'|i18n('design/standard/extract')}</th>
-						<th class="wide">{'Name'|i18n('design/standard/extract')}</th>
+						<th>{'Name'|i18n('design/standard/extract')}</th>
 						<th class="tight">{'Identifier'|i18n('design/standard/extract')}</th>
 						<th class="tight">&nbsp;</th>
 					</tr>
@@ -145,7 +146,7 @@
 						</td>
 						<td><input name="Attributes[{$:index}][exportname]" type="text" value="{$:item.exportname}"></td>
 						<td><input type="checkbox" name="RemoveIDArray[]" value="{$:index}"></td>
-					</tr> 
+					</tr>
 					{/section}
 				</table>
 			</div>

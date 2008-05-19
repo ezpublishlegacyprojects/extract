@@ -1,10 +1,10 @@
 <?php
 
-class eZURLHandler extends BaseHandler {
-
-	function exportAttribute( &$attribute )
+class eZURLHandler extends BaseHandler
+{
+	public function exportAttribute( &$attribute )
 	{
-		$tempstring=$attribute->content() . ' ' . $attribute->DataText;
+		$tempstring = $attribute->content() . ' ' . $attribute->DataText;
 		return $this->escape( $tempstring );
 	}
 }

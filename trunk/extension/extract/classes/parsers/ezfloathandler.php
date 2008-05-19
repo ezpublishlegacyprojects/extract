@@ -1,11 +1,11 @@
 <?php
 
-class eZFloatHandler extends BaseHandler {
-
-	function exportAttribute(&$attribute) {
-		return $this->escape($attribute->content());
-	}
-
+class eZFloatHandler extends BaseHandler
+{
+    public function exportAttribute( &$attribute )
+    {
+        return $this->escape( $attribute->content() );
+    }
 }
 
 ?>

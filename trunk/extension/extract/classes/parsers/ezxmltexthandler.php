@@ -1,9 +1,10 @@
-<?
-
-class eZXMLTextHandler extends BaseHandler{
-	function exportAttribute(&$attribute ) {
-		$content=&$attribute->content();
-		return $this->escape($content->XMLData );
+<?php
+class eZXMLTextHandler extends BaseHandler
+{
+	public function exportAttribute( &$attribute )
+	{
+		$content = $attribute->content();
+		return $this->escape( $content->XMLData );
 	}
 }
 ?>
