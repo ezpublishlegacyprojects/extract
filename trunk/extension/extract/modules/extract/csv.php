@@ -11,20 +11,20 @@ function applyOutputFilter( $tmp, $filtername )
     switch( $filtername )
 	{
 		case "date":
-			$tmp = strftime("%Y-%m-%d", $tmp);
+			$tmp = strftime( "%Y-%m-%d", $tmp );
 		break;
 		case "parent_name":
-			$node = eZContentObjectTreeNode::fetch($tmp);
-			$tmp = $node->attribute('name');
+			$node = eZContentObjectTreeNode::fetch( $tmp );
+			$tmp = $node->attribute( 'name' );
 		break;
 		case "parent_nodes":
 			$names = array();
-			foreach ($tmp as $node_id)
+			foreach ( $tmp as $node_id )
 			{
-				$node = eZContentObjectTreeNode::fetch($node_id);
-				$names[] = $node->attribute('name');
+				$node = eZContentObjectTreeNode::fetch( $node_id );
+				$names[] = $node->attribute( 'name' );
 			}
-			$tmp = join(" ", $names);
+			$tmp = join( " ", $names );
 		break;
 		default:
 		break;
@@ -100,7 +100,7 @@ if ( isset( $_SESSION['EXTRACTCSV_OBJECTID_ARRAY'] ) and count( $_SESSION['EXTRA
 else
     $hasPreFilledData = false;
 
-if ( $hasPreFilledData and $http->hasPostVariable('RemoveData') )
+if ( $hasPreFilledData and $http->hasPostVariable( 'RemoveData' ) )
 {
     unset( $_SESSION['EXTRACTCSV_OBJECTID_ARRAY'] );
 
@@ -109,28 +109,28 @@ if ( $hasPreFilledData and $http->hasPostVariable('RemoveData') )
 }
 $sessionConfig = $http->sessionVariable( 'eZExtractConfig' );
 // Set col & row separator
-$Separator = $http->hasPostVariable('Separator') ? $http->postVariable('Separator') : ',';
+$Separator = $http->hasPostVariable( 'Separator' ) ? $http->postVariable( 'Separator' ) : ',';
 
-$LineSeparator = $http->hasPostVariable('LineSeparator') ? $http->postVariable('LineSeparator') : $sys->osType();
+$LineSeparator = $http->hasPostVariable( 'LineSeparator' ) ? $http->postVariable( 'LineSeparator' ) : $sys->osType();
 
-$LineSeparatorArray = array('win32' => array('id' => 'win32', 'value' => "\r\n", 'name' => 'Windows'),
-			    'unix' => array('id' => 'unix', 'value' => "\n", 'name' => 'Unix'),
-			    'mac' => array('id' => 'mac', 'value' => "\r", 'name' => 'Mac'),
+$LineSeparatorArray = array( 'win32' => array( 'id' => 'win32', 'value' => "\r\n", 'name' => 'Windows' ),
+			    'unix' => array( 'id' => 'unix', 'value' => "\n", 'name' => 'Unix' ),
+			    'mac' => array( 'id' => 'mac', 'value' => "\r", 'name' => 'Mac' ),
 );
 
-$tpl->setVariable('Separator', $Separator);
-$tpl->setVariable('LineSeparator', $LineSeparator);
-$tpl->setVariable('LineSeparatorArray', $LineSeparatorArray);
+$tpl->setVariable( 'Separator', $Separator );
+$tpl->setVariable( 'LineSeparator', $LineSeparator );
+$tpl->setVariable( 'LineSeparatorArray', $LineSeparatorArray );
 
 // Set limit & offset
-$Limit = $http->hasPostVariable('Limit') ? $http->postVariable('Limit') : $ini_bis->variable('ExportSettings','Limit');
-$Offset = $http->hasPostVariable('Offset') ? $http->postVariable('Offset') : $ini_bis->variable('ExportSettings','Offset');
+$Limit = $http->hasPostVariable( 'Limit' ) ? $http->postVariable( 'Limit' ) : $ini_bis->variable( 'ExportSettings', 'Limit' );
+$Offset = $http->hasPostVariable( 'Offset' ) ? $http->postVariable( 'Offset' ) : $ini_bis->variable( 'ExportSettings', 'Offset' );
 
-$tpl->setVariable('Limit', $Limit);
-$tpl->setVariable('Offset', $Offset);
+$tpl->setVariable( 'Limit', $Limit );
+$tpl->setVariable( 'Offset', $Offset );
 
 // What is the default subtree
-if(!$http->hasPostVariable('Subtree'))
+if( !$http->hasPostVariable( 'Subtree' ) )
 {
 	$Subtree = ($ini_bis->variable('ExportSettings','StartNodeID') == '') ? $ini->variable('UserSettings', 'DefaultUserPlacement') : $ini_bis->variable('ExportSettings','StartNodeID');
 }
@@ -139,7 +139,7 @@ else
 	$Subtree = $http->postVariable('Subtree');
 }
 // What is the default fetch type
-if(!$http->hasPostVariable('type'))
+if( !$http->hasPostVariable( 'type' ) )
 {
 	$type = 'tree';
 }
@@ -153,22 +153,22 @@ if ( $type == 'list' )
 else
 	$depth = false;
 
-if( !$http->hasPostVariable('mainnodeonly') )
+if( !$http->hasPostVariable( 'mainnodeonly' ) )
 {
 	$Mainnodeonly = '0';
 }
 else
 {
-	$Mainnodeonly = $http->postVariable('mainnodeonly');
+	$Mainnodeonly = $http->postVariable( 'mainnodeonly' );
 }
 
-if( !$http->hasPostVariable('Escape') )
+if( !$http->hasPostVariable( 'Escape' ) )
 {
 	$Escape = true;
 }
 else
 {
-    if ( $http->postVariable('Escape') )
+    if ( $http->postVariable( 'Escape' ) )
        $Escape = true;
     else
 	   $Escape = false;
@@ -177,13 +177,13 @@ else
 if ( !$hasPreFilledData )
 {
     // What is the default class
-    if(!$http->hasPostVariable('Class_id'))
+    if( !$http->hasPostVariable( 'Class_id' ) )
     {
-	   $Class_id = ($ini_bis->variable('ExportSettings','DefaultClassID') == '') ? $ini->variable('UserSettings', 'UserClassID') : $ini_bis->variable('ExportSettings','DefaultClassID');
+	   $Class_id = ($ini_bis->variable( 'ExportSettings', 'DefaultClassID' ) == '') ? $ini->variable( 'UserSettings', 'UserClassID' ) : $ini_bis->variable( 'ExportSettings', 'DefaultClassID' );
     }
     else
     {
-	   $Class_id = $http->postVariable('Class_id');
+	   $Class_id = $http->postVariable( 'Class_id' );
     }
 }
 else
@@ -193,24 +193,24 @@ else
 }
 
 
-if($http->hasPostVariable('SelectedNodeIDArray'))
+if ( $http->hasPostVariable('SelectedNodeIDArray'))
 {
-	$nodes = $http->postVariable('SelectedNodeIDArray');
+	$nodes = $http->postVariable( 'SelectedNodeIDArray' );
 	$Subtree = $nodes[0];
 }
 
 // If we don't remove, add or download then or we load all attributes or we start empty
-if($http->hasPostVariable('Remove') || $http->hasPostVariable('AddAttribute') || $http->hasPostVariable('Download'))
+if( $http->hasPostVariable( 'Remove' ) || $http->hasPostVariable( 'AddAttribute' ) || $http->hasPostVariable( 'Download' ) )
 {
 	$Attributes = $http->postVariable( 'Attributes' );
 }
 else
 {
-	if ( array_key_exists( 'Attributes', $sessionConfig ) and array_key_exists( $Class_id, $sessionConfig['Attributes'] )  )
+	if ( array_key_exists( 'Attributes', $sessionConfig ) and array_key_exists( $Class_id, $sessionConfig['Attributes'] ) )
 	{
 	    $Attributes = $sessionConfig['Attributes'][$Class_id];
 	}
-	else if($ini_bis->variable('ExportSettings','PreselectAttributes') == 'false')
+	else if( $ini_bis->variable( 'ExportSettings', 'PreselectAttributes' ) == 'false' )
 	{
 		$Attributes = array();
 	}
@@ -220,8 +220,8 @@ else
 
 		foreach( $contentAttributeList as $classattribute )
 		{
-			$Attributes[] = array(   'id' => $classattribute->attribute('identifier'),
-			                         'name' => $classattribute->attribute('name'), 'exportname' => $classattribute->attribute( 'identifier' ) );
+			$Attributes[] = array(   'id' => $classattribute->attribute( 'identifier' ),
+			                         'name' => $classattribute->attribute( 'name' ), 'exportname' => $classattribute->attribute( 'identifier' ) );
 		}
 	}
 }
@@ -231,10 +231,10 @@ if( $http->hasPostVariable( 'AddAttribute' ) )
 {
 	$addID = $http->postVariable( 'AddAttributeID ');
 
-	if(is_numeric($addID))
+	if ( is_numeric( $addID ) )
 	{
-		$attribute = eZContentClassAttribute::fetch($addID);
-		$element = array('id' => $attribute->attribute('identifier'), 'name' => $attribute->attribute('name'), 'exportname' => $attribute->attribute('identifier'));
+		$attribute = eZContentClassAttribute::fetch( $addID );
+		$element = array( 'id' => $attribute->attribute( 'identifier' ), 'name' => $attribute->attribute( 'name' ), 'exportname' => $attribute->attribute( 'identifier' ) );
 		$Attributes[] = $element;
 	}
 	else
@@ -244,15 +244,15 @@ if( $http->hasPostVariable( 'AddAttribute' ) )
 }
 
 // Remove action that modify previous array
-if($http->hasPostVariable('Remove') && $http->hasPostVariable('RemoveIDArray'))
+if( $http->hasPostVariable( 'Remove' ) && $http->hasPostVariable( 'RemoveIDArray' ) )
 {
 	$AttributesClean = array();
 
-	$Removes = $http->postVariable('RemoveIDArray');
+	$Removes = $http->postVariable( 'RemoveIDArray' );
 
-	for($i=0; $i < count($Attributes); $i++)
+	for( $i=0; $i < count( $Attributes ); $i++ )
 	{
-		if(!in_array($i, $Removes))
+		if( !in_array( $i, $Removes ) )
 		    $AttributesClean[] = $Attributes[$i];
 	}
 	$Attributes = $AttributesClean;
@@ -269,30 +269,25 @@ $tpl->setVariable( 'Mainnodeonly', $Mainnodeonly );
 $tpl->setVariable( 'has_prefilledata', $hasPreFilledData );
 $tpl->setVariable( 'Escape', $Escape );
 
-/*
-    function fetchObjectTreeCount( $parentNodeID, $onlyTranslated, $language, $class_filter_type, $class_filter_array,
-                                   $attributeFilter, $depth, $depthOperator,
-                                   $ignoreVisibility, $limitation, $mainNodeOnly, $extendedAttributeFilter, $objectNameFilter )
-*/
 $fCollection = new eZContentFunctionCollection();
-$list = $fCollection->fetchObjectTreeCount($Subtree, false, false, 'include', array($Class_id),
-                                   false, false, false,
-							      false, false, true, false, false );
+$list = $fCollection->fetchObjectTreeCount( $Subtree, false, false, 'include', array( $Class_id ),
+                                            false, false, false,
+							                false, false, true, false, false );
 $tpl->setVariable( 'max_count', $list['result'] + 1 );
 // Handle download action
-if( $http->hasPostVariable('Download') )
+if( $http->hasPostVariable( 'Download' ) )
 {
 	#include_once('lib/ezfile/classes/ezfile.php');
 
 	$dir =  eZSys::cacheDirectory().'/';
-	$file = $dir.'export.csv';
+	$file = $dir . 'export.csv';
 
-	foreach($Attributes as $item)
+	foreach( $Attributes as $item )
 	{
-		$row .= $item['exportname'].$Separator;
+		$row .= $item['exportname'] . $Separator;
 	}
 
-	$data = $row.$LineSeparatorArray[$LineSeparator]['value'];
+	$data = $row . $LineSeparatorArray[$LineSeparator]['value'];
 
     if ( $hasPreFilledData )
     {
@@ -301,7 +296,7 @@ if( $http->hasPostVariable('Download') )
     else
     {
         // Retrieve parent_node_id sort_array
-    	$node = eZContentObjectTreeNode::fetch($Subtree);
+    	$node = eZContentObjectTreeNode::fetch( $Subtree );
     	$sortBy = $node->sortArray();
     	$sortBy = $sortBy[0];
 
@@ -315,16 +310,16 @@ if( $http->hasPostVariable('Download') )
 	{
 		$row = '';
 		if ( is_object( $item ) )
-            $obj = $item->attribute('object');
+            $obj = $item->attribute( 'object' );
         else
             $obj = eZContentObject::fetch( $item );
         if ( !is_object( $obj ) )
             continue;
-		$datamap = $obj->attribute('data_map');
+		$datamap = $obj->attribute( 'data_map' );
 		# include_once( 'extension/extract/classes/parserinterface.php' );
         $parser = new ParserInterface( $Separator, $Escape );
 
-		foreach($Attributes as $dataelement)
+		foreach( $Attributes as $dataelement )
 		{
 			$found = false;
 
@@ -332,7 +327,7 @@ if( $http->hasPostVariable('Download') )
 			{
 			    $row .= $parser->exportAttribute( $datamap[ $dataelement['id'] ] );
 			}
-			else if(preg_match('#(.*)\.(.*)#', $dataelement['id'], $matches))
+			else if( preg_match( '#(.*)\.(.*)#', $dataelement['id'], $matches ) )
 			{
 				#include_once($ExtraAttributes[$dataelement['id']]['include']);
 
@@ -340,28 +335,29 @@ if( $http->hasPostVariable('Download') )
 				$tmp = new $matches[1];
 				$tmp = $tmp->$ExtraAttributes[$dataelement['id']]['function']($id);
 
-				if(array_key_exists('filter', $ExtraAttributes[$dataelement['id']]))
+				if( array_key_exists( 'filter', $ExtraAttributes[$dataelement['id']] ) )
 				{
-					$tmp = applyOutputFilter($tmp->attribute($matches[2]), $ExtraAttributes[$dataelement['id']]['filter']);
+					$tmp = applyOutputFilter( $tmp->attribute($matches[2]), 
+					                          $ExtraAttributes[$dataelement['id']]['filter'] );
 				}
 
-				if(is_object($tmp))
-					$row .=  BaseHandler::escape( $tmp->attribute( $matches[2] ) ) . $Separator;
+				if( is_object( $tmp ) )
+					$row .=  $parser->escape( $tmp->attribute( $matches[2] ) ) . $Separator;
 				else
-					$row .=  BaseHandler::escape( $tmp  ).  $Separator;
+					$row .=  $parser->escape( $tmp ) . $Separator;
 
-				unset($tmp);
+				unset( $tmp );
 			}
 			else
 			{
 				$row .= $Separator;
 			}
 		}
-		$data .= $row.$LineSeparatorArray[$LineSeparator]['value'];
+		$data .= $row . $LineSeparatorArray[$LineSeparator]['value'];
 	}
 
-	@unlink($file);
-	eZFile::create($file, false, $data);
+	@unlink( $file );
+	eZFile::create( $file, false, $data );
 
 	if( !eZFile::download( $file ) ) 
         $module->redirectTo( 'content/view/full/5' );
@@ -369,26 +365,26 @@ if( $http->hasPostVariable('Download') )
 
 if( $http->hasPostVariable( 'BrowseSubtree' ) )
 {
-	include_once('kernel/classes/ezcontentbrowse.php');
+	#include_once('kernel/classes/ezcontentbrowse.php');
 
-	$return = eZContentBrowse::browse(array('action_name' => 'ExtractionSubtree',
+	$return = eZContentBrowse::browse( array( 'action_name' => 'ExtractionSubtree',
 						'description_template' => 'design:extract/browse_node.tpl',
 						'from_page' => '/extract/csv',
-						'persistent_data' => array('Subtree' => $Subtree,
+						'persistent_data' => array( 'Subtree' => $Subtree,
 									    'Class_id' => $Class_id,
 									    'Attributes' => $Attributes,
 									    'LineSeparator' => $LineSeparator,
-									    'Separator' => $Separator)),
-					       $module);
+									    'Separator' => $Separator ) ),
+					       $module );
 }
 
 $Result = array();
-$Result['content'] = $tpl->fetch("design:extract/csv.tpl");
-$Result['path'] = array(    array('url' => false,
-			                      'text' => ezi18n('design/standard/extract', 'Extract') ),
-			                array('url' => false,
-			                      'text' => ezi18n('design/standard/extract', 'CSV') )
-			                       );
+$Result['content'] = $tpl->fetch( "design:extract/csv.tpl" );
+$Result['path'] = array( array( 'url' => false,
+			                    'text' => ezi18n('design/standard/extract', 'Extract') ),
+			             array( 'url' => false,
+			                    'text' => ezi18n('design/standard/extract', 'CSV') )
+			            );
 // New variables of 3.8
 $Result['left_menu'] = 'design:extract/menu.tpl';
 
