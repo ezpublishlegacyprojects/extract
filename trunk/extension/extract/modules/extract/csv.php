@@ -2,8 +2,6 @@
 
 // Include toolbox
 require_once ( "kernel/common/template.php" );
-#include_once('lib/ezutils/classes/ezhttptool.php');
-#include_once('kernel/content/ezcontentfunctioncollection.php');
 
 function applyOutputFilter( $tmp, $filtername )
 {
@@ -365,8 +363,6 @@ if( $http->hasPostVariable( 'Download' ) )
 
 if( $http->hasPostVariable( 'BrowseSubtree' ) )
 {
-	#include_once('kernel/classes/ezcontentbrowse.php');
-
 	$return = eZContentBrowse::browse( array( 'action_name' => 'ExtractionSubtree',
 						'description_template' => 'design:extract/browse_node.tpl',
 						'from_page' => '/extract/csv',
@@ -385,7 +381,7 @@ $Result['path'] = array( array( 'url' => false,
 			             array( 'url' => false,
 			                    'text' => ezi18n('design/standard/extract', 'CSV') )
 			            );
-// New variables of 3.8
+
 $Result['left_menu'] = 'design:extract/menu.tpl';
 
 ?>
