@@ -20,71 +20,71 @@ ExportableDatatypes[]=ezselection
 ExportableDatatypes[]=ezenum
 ExportableDatatypes[]=ezcountry
 
-#all handlerfiles are sought in the base directory (extension/csvexport/modules/csvexport/), if you want 
-#to place them some place down the path from there, add the path from there.
+# you can place the handler files in your extension
+# just enter the full path to the handler
 
 [ezstring]
-HandlerFile=ezstringhandler.php
+HandlerFile=extension/extract/classes/parsers/ezstringhandler.php
 HandlerClass=eZStringHandler
 
 [ezenhancedselection]
-HandlerFile=ezstringhandler.php
+HandlerFile=extension/extract/classes/parsers/ezstringhandler.php
 HandlerClass=eZStringHandler
 
 [ezinteger]
-HandlerFile=ezintegerhandler.php
+HandlerFile=extension/extract/classes/parsers/ezintegerhandler.php
 HandlerClass=eZIntegerHandler
 
 [ezxmltext]
-HandlerFile=ezxmltexthandler.php
+HandlerFile=extension/extract/classes/parsers/ezxmltexthandler.php
 HandlerClass=eZXMLTextHandler
 
 [ezidentifier]
-HandlerFile=ezidentifierhandler.php
+HandlerFile=extension/extract/classes/parsers/ezidentifierhandler.php
 HandlerClass=eZIdentifierHandler
 
 [ezfloat]
-HandlerFile=ezfloathandler.php
+HandlerFile=extension/extract/classes/parsers/ezfloathandler.php
 HandlerClass=eZFloatHandler
 
 [ezemail]
-HandlerFile=ezemailhandler.php
+HandlerFile=extension/extract/classes/parsers/ezemailhandler.php
 HandlerClass=eZEmailHandler
 
 [ezurl]
-HandlerFile=ezurlhandler.php
+HandlerFile=extension/extract/classes/parsers/ezurlhandler.php
 HandlerClass=eZURLHandler
 
 [eztext]
-HandlerFile=eztexthandler.php
+HandlerFile=extension/extract/classes/parsers/eztexthandler.php
 HandlerClass=eZTextHandler
 
 [ezenhancedobjectrelation]
-HandlerFile=ezenhancedobjectrelationhandler.php
+HandlerFile=extension/extract/classes/parsers/ezenhancedobjectrelationhandler.php
 HandlerClass=ezenhancedobjectrelationHandler
 #false will simply output the IDs of the related objects
 OutputRelatedObjectNames=true
 
 [ezselection]
-HandlerFile=ezselectionhandler.php
+HandlerFile=extension/extract/classes/parsers/ezselectionhandler.php
 HandlerClass=eZSelectionHandler
 
 [ezenum]
-HandlerFile=ezenumhandler.php
+HandlerFile=extension/extract/classes/parsers/ezenumhandler.php
 HandlerClass=eZEnumHandler
 
 [ezuser]
-HandlerFile=ezuserhandler.php
+HandlerFile=extension/extract/classes/parsers/ezuserhandler.php
 HandlerClass=eZUserHandler
 
 [ezdate]
-HandlerFile=ezdatehandler.php
+HandlerFile=extension/extract/classes/parsers/ezdatehandler.php
 HandlerClass=eZDateHandler
 
 [ezboolean]
-HandlerFile=ezbooleanhandler.php
+HandlerFile=extension/extract/classes/parsers/ezbooleanhandler.php
 HandlerClass=eZBooleanHandler
 
 [ezcountry]
-HandlerFile=ezselectionhandler.php
+HandlerFile=extension/extract/classes/parsers/ezselectionhandler.php
 HandlerClass=eZSelectionHandler
