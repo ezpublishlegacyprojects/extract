@@ -70,6 +70,9 @@
                 <div class="element">
                     <label>{'Column separator'|i18n('design/standard/extract')}</label>
                     <input name="Separator" type="text" id="Separator" value="{$Separator}" />
+                    <p>
+                        {"Info: Excel likes a semicolon as separator."|i18n('design/standard/extract')}
+                    </p>
                 </div>
                 <div class="element">
                     <label>{'Row separator'|i18n('design/standard/extract')}</label>

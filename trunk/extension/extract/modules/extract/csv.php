@@ -108,7 +108,7 @@ if ( $hasPreFilledData and $http->hasPostVariable( 'RemoveData' ) )
 }
 $sessionConfig = $http->sessionVariable( 'eZExtractConfig' );
 // Set col & row separator
-$Separator = $http->hasPostVariable( 'Separator' ) ? $http->postVariable( 'Separator' ) : ';';
+$Separator = $http->hasPostVariable( 'Separator' ) ? $http->postVariable( 'Separator' ) : ',';
 
 $LineSeparator = $http->hasPostVariable( 'LineSeparator' ) ? $http->postVariable( 'LineSeparator' ) : $sys->osType();
 
