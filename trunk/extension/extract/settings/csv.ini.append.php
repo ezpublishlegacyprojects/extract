@@ -19,6 +19,9 @@ ExportableDatatypes[]=ezenhancedselection
 ExportableDatatypes[]=ezselection
 ExportableDatatypes[]=ezenum
 ExportableDatatypes[]=ezcountry
+ExportableDatatypes[]=ezimage
+ExportableDatatypes[]=ezmedia
+ExportableDatatypes[]=ezbinaryfile
 
 # you can place the handler files in your extension
 # just enter the full path to the handler
@@ -88,3 +91,15 @@ HandlerClass=eZBooleanHandler
 [ezcountry]
 HandlerFile=extension/extract/classes/parsers/ezselectionhandler.php
 HandlerClass=eZSelectionHandler
+
+[ezimage]
+HandlerFile=ezimagehandler.php
+HandlerClass=ezImageExportHandler
+
+[ezmedia]
+HandlerFile=ezmediahandler.php
+HandlerClass=ezMediaExportHandler
+
+[ezbinaryfile]
+HandlerFile=ezbinaryfilehandler.php
+HandlerClass=ezBinaryfileExportHandler
