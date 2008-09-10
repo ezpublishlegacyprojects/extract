@@ -22,6 +22,7 @@ ExportableDatatypes[]=ezcountry
 ExportableDatatypes[]=ezimage
 ExportableDatatypes[]=ezmedia
 ExportableDatatypes[]=ezbinaryfile
+ExportableDatatypes[]=ezmatrix
 
 # you can place the handler files in your extension
 # just enter the full path to the handler
@@ -103,3 +104,7 @@ HandlerClass=ezMediaExportHandler
 [ezbinaryfile]
 HandlerFile=ezbinaryfilehandler.php
 HandlerClass=ezBinaryfileExportHandler
+
+[ezmatrix]
+HandlerFile=ezmatrixhandler.php
+HandlerClass=ezMatrixExportHandler

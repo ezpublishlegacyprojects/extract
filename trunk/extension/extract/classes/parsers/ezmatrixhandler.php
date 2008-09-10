@@ -1,22 +1,20 @@
 <?php
-/* Grapped code from http://ez.no/community/contribs/import_export/csv_extract_pubsvn
-   , but the code doesn`t look fine.
-   - Where the hell is eZStringUtils?
-   - Why is a double return?
-*/
 
-class eZMatrixHandler extends BaseHandler
+class ezMatrixExportHandler extends BaseHandler
 {
-    public function exportAttribute( &$attribute )
+    function exportAttribute(&$attribute)
     {
         $content = $attribute->content();
         $rows = $content->attribute( 'rows' );
         foreach( $rows['sequential'] as $row )
         {
-            $matrixArray[] = eZStringUtils::implodeStr( $row['columns'], '_' );
+
+        	$matrixArray[] = eZStringUtils::implodeStr( $row['columns'], '|' );
+        	
         }
-        return eZStringUtils::implodeStr( $matrixArray, '_' );
-        return $this->escape( $matrixArray );
+        $string = eZStringUtils::implodeStr( $matrixArray, '&' );
+
+        return $string;
     }
 }
 ?>
