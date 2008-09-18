@@ -3,9 +3,9 @@ class ezImageExportHandler extends BaseHandler
 {
        function exportAttribute( &$attribute )
        {
-		    $imageHandler=&$attribute->content();
+		    $imageHandler=$attribute->content();
 		    
-		    $imageAlias =& $imageHandler->imageAlias( 'original' );
+		    $imageAlias = $imageHandler->imageAlias( 'original' );
 		   	
 		    //Return full url?  
 		    //$url = eZSys::hostname() . eZSys::wwwDir() .'/'. $imageAlias['url'];

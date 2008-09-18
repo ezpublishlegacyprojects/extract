@@ -23,6 +23,7 @@ ExportableDatatypes[]=ezimage
 ExportableDatatypes[]=ezmedia
 ExportableDatatypes[]=ezbinaryfile
 ExportableDatatypes[]=ezmatrix
+ExportableDatatypes[]=ezobjectrelationlist
 
 # you can place the handler files in your extension
 # just enter the full path to the handler
@@ -94,17 +95,22 @@ HandlerFile=extension/extract/classes/parsers/ezselectionhandler.php
 HandlerClass=eZSelectionHandler
 
 [ezimage]
-HandlerFile=ezimagehandler.php
+HandlerFile=extension/extract/classes/parsers/ezimagehandler.php
 HandlerClass=ezImageExportHandler
 
 [ezmedia]
-HandlerFile=ezmediahandler.php
+HandlerFile=extension/extract/classes/parsers/ezmediahandler.php
 HandlerClass=ezMediaExportHandler
 
 [ezbinaryfile]
-HandlerFile=ezbinaryfilehandler.php
+HandlerFile=extension/extract/classes/parsers/ezbinaryfilehandler.php
 HandlerClass=ezBinaryfileExportHandler
 
 [ezmatrix]
-HandlerFile=ezmatrixhandler.php
+HandlerFile=extension/extract/classes/parsers/ezmatrixhandler.php
 HandlerClass=ezMatrixExportHandler
+
+[ezobjectrelationlist]
+HandlerFile=extension/extract/classes/parsers/ezobjectrelationlisthandler.php
+HandlerClass=eZObjectRelationListHandler
+OutputRelatedObjectNames=true
