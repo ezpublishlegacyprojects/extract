@@ -95,22 +95,21 @@ HandlerFile=extension/extract/classes/parsers/ezselectionhandler.php
 HandlerClass=eZSelectionHandler
 
 [ezimage]
-HandlerFile=extension/extract/classes/parsers/ezimagehandler.php
+HandlerFile=ezimagehandler.php
 HandlerClass=ezImageExportHandler
 
 [ezmedia]
-HandlerFile=extension/extract/classes/parsers/ezmediahandler.php
+HandlerFile=ezmediahandler.php
 HandlerClass=ezMediaExportHandler
 
 [ezbinaryfile]
-HandlerFile=extension/extract/classes/parsers/ezbinaryfilehandler.php
+HandlerFile=ezbinaryfilehandler.php
 HandlerClass=ezBinaryfileExportHandler
 
 [ezmatrix]
-HandlerFile=extension/extract/classes/parsers/ezmatrixhandler.php
+HandlerFile=ezmatrixhandler.php
 HandlerClass=ezMatrixExportHandler
 
 [ezobjectrelationlist]
 HandlerFile=extension/extract/classes/parsers/ezobjectrelationlisthandler.php
 HandlerClass=eZObjectRelationListHandler
-OutputRelatedObjectNames=true
