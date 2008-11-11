@@ -18,7 +18,6 @@ class BaseHandler
            )
         {
            $stringtoescape = str_replace( $this->encloseChar, $this->encloseChar . $this->encloseChar, $stringtoescape );
-           $stringtoescape = str_replace( $this->separationChar, $this->encloseChar . $this->separationChar, $stringtoescape );
            return $this->encloseChar . $stringtoescape . $this->encloseChar;
         }
         else
