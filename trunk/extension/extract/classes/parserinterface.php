@@ -1,6 +1,5 @@
-<?
-#include_once('lib/ezutils/classes/ezini.php');
-#include_once('extension/extract/classes/basehandler.php');
+<?php
+
 
 /*
     return the datatypes (identifiers) that can be exported
