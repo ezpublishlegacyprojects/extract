@@ -25,9 +25,20 @@ function applyOutputFilter( $tmp, $filtername )
             }
             $tmp = join( " ", $names );
         break;
+        case "url_alias":
+            $node = eZContentObjectTreeNode::fetch( $tmp->attribute( 'main_parent_node_id' ) );
+            if ( $node )
+                $tmp = $node->attribute( 'url_alias' );
+        break;
+        case "full_url_alias":
+            $node = eZContentObjectTreeNode::fetch( $tmp->attribute( 'main_parent_node_id' ) );
+            if ( $node )
+                $tmp = "http://" . eZINI::instance()->variable('SiteSettings','SiteURL'). '/' . $node->attribute( 'url_alias' );
+        break;
         default:
         break;
     }
+     
     return $tmp;
 }
 
@@ -37,47 +48,52 @@ $ExtraAttributes = array(
                         'id' => 'ezuser.login',
                         'exportname' => 'login',
                         'name' => 'Login',
-                        'include' => 'kernel/classes/datatypes/ezuser/ezuser.php',
                         'function' => 'fetch'),
             'ezuser.email' => array(
                         'id' => 'ezuser.email',
                         'exportname' => 'email',
                         'name' => 'E-Mail',
-                        'include' => 'kernel/classes/datatypes/ezuser/ezuser.php',
                         'function' => 'fetch'),
             'ezuser.password_hash' => array(
                         'id' => 'ezuser.password_hash',
                         'exportname' => 'password',
                         'name' => 'Password',
-                        'include' => 'kernel/classes/datatypes/ezuser/ezuser.php',
                         'function' => 'fetch'),
             'ezcontentobject.published' => array(
                         'id' => 'ezcontentobject.published',
                         'exportname' => 'published',
                         'name' => 'Content Object Published Time',
                         'filter' => 'date',
-                        'include' => 'kernel/classes/ezcontentobject.php',
                         'function' => 'fetch'),
             'ezcontentobject.modified' => array(
                         'id' => 'ezcontentobject.modified',
                         'exportname' => 'modified',
                         'name' => 'Content Object Modified Time',
                         'filter' => 'date',
-                        'include' => 'kernel/classes/ezcontentobject.php',
+                        'function' => 'fetch'),
+            'ezcontentobject.url_alias' => array(
+                        'id' => 'ezcontentobject.url_alias',
+                        'exportname' => 'url_alias',
+                        'name' => 'URL Alias',
+                        'filter' => 'url_alias',
+                        'function' => 'fetch'),
+            'ezcontentobject.full_url_alias' => array(
+                        'id' => 'ezcontentobject.full_url_alias',
+                        'exportname' => 'full_url_alias',
+                        'name' => 'Absolute URL Alias',
+                        'filter' => 'full_url_alias',
                         'function' => 'fetch'),
             'ezcontentobject.main_parent_node_id' => array(
                         'id' => 'ezcontentobject.main_parent_node_id',
                         'exportname' => 'parent_name',
                         'name' => 'Content Object Main Parent Name',
                         'filter' => 'parent_name',
-                        'include' => 'kernel/classes/ezcontentobject.php',
                         'function' => 'fetch'),
             'ezcontentobject.parent_nodes' => array(
                         'id' => 'ezcontentobject.parent_nodes',
                         'exportname' => 'parent_nodes',
                         'name' => 'Content Object Parent Names',
                         'filter' => 'parent_nodes',
-                        'include' => 'kernel/classes/ezcontentobject.php',
                         'function' => 'fetch')
 );
 
@@ -342,15 +358,20 @@ if ( $http->hasPostVariable( 'Download' ) )
             }
             else if ( preg_match( '#(.*)\.(.*)#', $dataelement['id'], $matches ) )
             {
-                #include_once($ExtraAttributes[$dataelement['id']]['include']);
-
                 $id = $obj->attribute('id');
                 $tmp = new $matches[1];
+          
                 $tmp = $tmp->$ExtraAttributes[$dataelement['id']]['function']($id);
-
-                if ( array_key_exists( 'filter', $ExtraAttributes[$dataelement['id']] ) )
+			
+                if ( array_key_exists( 'filter', $ExtraAttributes[$dataelement['id']] ) and $tmp->hasAttribute( $matches[2] ) )
                 {
+       
                     $tmp = applyOutputFilter( $tmp->attribute($matches[2]),
+                                              $ExtraAttributes[$dataelement['id']]['filter'] );
+                }
+                elseif ( array_key_exists( 'filter', $ExtraAttributes[$dataelement['id']] ) and !$tmp->hasAttribute( $matches[2] ) )
+                {
+                	          $tmp = applyOutputFilter( $tmp,
                                               $ExtraAttributes[$dataelement['id']]['filter'] );
                 }
 
