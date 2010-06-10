@@ -26,12 +26,12 @@ function applyOutputFilter( $tmp, $filtername )
             $tmp = join( " ", $names );
         break;
         case "url_alias":
-            $node = eZContentObjectTreeNode::fetch( $tmp->attribute( 'main_parent_node_id' ) );
+            $node = eZContentObjectTreeNode::fetch( $tmp->attribute( 'main_node_id' ) );
             if ( $node )
                 $tmp = $node->attribute( 'url_alias' );
         break;
         case "full_url_alias":
-            $node = eZContentObjectTreeNode::fetch( $tmp->attribute( 'main_parent_node_id' ) );
+            $node = eZContentObjectTreeNode::fetch( $tmp->attribute( 'main_node_id' ) );
             if ( $node )
                 $tmp = "http://" . eZINI::instance()->variable('SiteSettings','SiteURL'). '/' . $node->attribute( 'url_alias' );
         break;
