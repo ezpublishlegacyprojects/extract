@@ -20,7 +20,7 @@ class eZObjectRelationListHandler extends BaseHandler
             	$names[]=$object->name();
             }
         }
-        return $this->escape( join(", ", $names) );
+        return $this->escape(  utf8_decode(join(", ", $names) ));
 	}
 }
 ?>

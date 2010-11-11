@@ -24,6 +24,7 @@ ExportableDatatypes[]=ezmedia
 ExportableDatatypes[]=ezbinaryfile
 ExportableDatatypes[]=ezmatrix
 ExportableDatatypes[]=ezobjectrelationlist
+StripURLText=true
 
 # you can place the handler files in your extension
 # just enter the full path to the handler
