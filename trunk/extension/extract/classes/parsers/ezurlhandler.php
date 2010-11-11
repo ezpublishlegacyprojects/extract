@@ -8,7 +8,7 @@ class eZURLHandler extends BaseHandler
 		$ini_option = $csvINI->variable( 'General', 'StripURLText' );
 		if ($ini_option == "true")
 		{
-			$tempstring = $attribute->content();
+			$tempstring = $attribute->DataText;
 		}
 		else
 		{
