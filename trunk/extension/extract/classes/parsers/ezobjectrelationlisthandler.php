@@ -9,8 +9,9 @@ class eZObjectRelationListHandler extends BaseHandler
         {
             return "";
         }
-        $doc = eZObjectRelationListType::parseXML( $xmlText );
-        $content = eZObjectRelationListType::createObjectContentStructure( $doc );
+        $rl = new eZObjectRelationListType();
+        $doc = $rl->parseXML( $xmlText );
+        $content = $rl->createObjectContentStructure( $doc );
 			
 		foreach ($content["relation_list"] as $id)
         {
