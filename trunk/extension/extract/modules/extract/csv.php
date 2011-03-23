@@ -89,6 +89,16 @@ $ExtraAttributes = array(
                         'name' => 'Content Object Main Parent Name',
                         'filter' => 'parent_name',
                         'function' => 'fetch'),
+			'ezcontentobject.main_node_id' => array(
+                        'id' => 'ezcontentobject.main_node_id',
+                        'exportname' => 'main_node_id',
+                        'name' => 'Main Node ID',                        
+                        'function' => 'fetch'),
+			'ezcontentobject.main_parent_node_id' => array(
+                        'id' => 'ezcontentobject.main_parent_node_id',
+                        'exportname' => 'main_parent_node_id',
+                        'name' => 'Main Parent Node ID',
+                        'function' => 'fetch'),
             'ezcontentobject.parent_nodes' => array(
                         'id' => 'ezcontentobject.parent_nodes',
                         'exportname' => 'parent_nodes',
@@ -300,6 +310,7 @@ if ( $http->hasPostVariable( 'Download' ) )
 
     $row = "";
     $first = true;
+    
     foreach( $Attributes as $item )
     {
         if ( $first )
@@ -319,10 +330,9 @@ if ( $http->hasPostVariable( 'Download' ) )
     else
     {
         // Retrieve parent_node_id sort_array
-        $node = eZContentObjectTreeNode::fetch( $Subtree );
-        $sortBy = $node->sortArray();
-        $sortBy = $sortBy[0];
-
+        $node = eZContentObjectTreeNode::fetch( $Subtree );          
+        (is_object( $item )) ? $sortBy = $node->sortArray() : null;          
+        $sortBy = $sortBy[0];		
         $groupBy = null;
 
         $list2 = $fCollection->fetchObjectTree( $Subtree, $sortBy, false, false, $Offset, $Limit, $depth, false,
@@ -331,21 +341,26 @@ if ( $http->hasPostVariable( 'Download' ) )
 
         $list = $list2['result'];
     }
-
+	
     $parser = new ParserInterface( $Separator, $Escape );
-
+	
     foreach( $list as $item )
     {
+
+    	
         $row = '';
         if ( is_object( $item ) )
             $obj = $item->attribute( 'object' );
+            
         else
             $obj = eZContentObject::fetch( $item );
         if ( !is_object( $obj ) )
             continue;
+   
         $datamap = $obj->attribute( 'data_map' );
-        # include_once( 'extension/extract/classes/parserinterface.php' );
 
+        #include_once( 'extension/extract/classes/parserinterface.php' );
+		
         $first = true;
 
         foreach( $Attributes as $dataelement )
@@ -392,8 +407,9 @@ if ( $http->hasPostVariable( 'Download' ) )
             }
         }
         $data .= $row . $LineSeparatorArray[$LineSeparator]['value'];
+        
     }
-
+    
     @unlink( $file );
     eZFile::create( $file, false, $data );
 
