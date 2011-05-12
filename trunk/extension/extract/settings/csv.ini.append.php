@@ -24,6 +24,7 @@ ExportableDatatypes[]=ezmedia
 ExportableDatatypes[]=ezbinaryfile
 ExportableDatatypes[]=ezmatrix
 ExportableDatatypes[]=ezobjectrelationlist
+ExportableDatatypes[]=hmregexpline
 StripURLText=true
 
 # you can place the handler files in your extension
@@ -114,3 +115,7 @@ HandlerClass=ezMatrixExportHandler
 [ezobjectrelationlist]
 HandlerFile=extension/extract/classes/parsers/ezobjectrelationlisthandler.php
 HandlerClass=eZObjectRelationListHandler
+
+[hmregexpline]
+HandlerFile=extension/extract/classes/parsers/hmregexplinehandler.php
+HandlerClass=hmregexplineHandler
