@@ -1,7 +1,0 @@
-[RegionalSettings]
-TranslationExtensions[]=extract
-
-
-[RoleSettings]
-PolicyOmitList[]=extract/csv
-PolicyOmitList[]=extract/*

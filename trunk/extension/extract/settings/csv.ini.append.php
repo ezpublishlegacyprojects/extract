@@ -1,3 +1,5 @@
+<?php /* #?ini charset="utf8"?
+
 [General]
 ExportableDatatypes[]
 ExportableDatatypes[]=ezboolean
@@ -119,3 +121,5 @@ HandlerClass=eZObjectRelationListHandler
 [hmregexpline]
 HandlerFile=extension/extract/classes/parsers/hmregexplinehandler.php
 HandlerClass=hmregexplineHandler
+
+*/ ?>

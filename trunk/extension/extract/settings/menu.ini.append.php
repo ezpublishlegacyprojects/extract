@@ -1,3 +1,5 @@
+<?php /* #?ini charset="utf8"?
+
 Part[ezextractnavigationpart]=Extract
 
 [TopAdminMenu]
@@ -18,3 +20,5 @@ Shown[default]=true
 Shown[edit]=false
 Shown[navigation]=true
 Shown[browse]=true
+
+*/ ?>
