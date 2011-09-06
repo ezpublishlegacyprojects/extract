@@ -2,6 +2,7 @@
 
 // Include toolbox
 require_once ( "kernel/common/template.php" );
+require_once( 'kernel/common/i18n.php' );
 
 function applyOutputFilter( $tmp, $filtername )
 {
